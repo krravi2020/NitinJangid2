@@ -1,0 +1,393 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+   <button class="navbar-toggler hidden-sm-up" type="button"
+      data-toggle="collapse" data-target="#collapseEx">
+   <i class="fa fa-bars"></i>
+   </button>
+   <div class="container">
+      <div class="collapse navbar-toggleable-xs" id="collapseEx">
+         <a class="navbar-brand" 
+            [routerLink]="['/home']">Demo</a>
+         <ul class="nav navbar-nav smooth-scroll" *ngIf="!loginStatus">
+         	
+         	
+            <li class="nav-item"><a class="navbar-brand"
+               href="javascript:void(0);" (click)="calculationPopup();">Calculator</a>
+            </li>
+            
+            <li class="nav-item"><a class="navbar-brand"
+               href="javascript:void(0);" (click)="loginModal();">Login / Sign
+               Up</a>
+            </li>
+           <!--   <li class="nav-item"><a class="nav-link"
+               href="#examples-of-use">How it works</a></li>
+            <li class="nav-item"><a class="nav-link outline"
+               href="#testimonials">Become a vendor</a></li>
+            <li class="nav-item outline" >
+               <!--  <p>{{onloadVal}}</p>--> <!--   <div *ngFor="let country of countries">{{country.name}}</div> -->
+              <!--  <a class="nav-link">
+                  <select class=" nav-link outline btn btn-link btn-lg  gold-outline-button"
+                     (input)="onInput($event)" style="display: block;height: 26px; ">
+                     <option  class="nav-item"  value="">{{seletectedCity}}</option>
+                     <option  class="nav-item"   *ngFor="let country of countries"  value={{country.id}}>{{country.name}}</option>
+                  </select>
+               </a>
+            </li>-->
+         </ul>
+         <ul class="nav navbar-nav smooth-scroll" *ngIf="loginStatus">
+            <!------>
+            <!--- <a class="nav-link outline">Notifications 		 
+               <span class="badge">{{bookingStatusLength}}</span>
+                <div class="select-style">
+               <select class="nav-link outline" (change)="Notifications($event.target.value)" style="display: block;">
+               			<option value="0">Notifications</option>
+               			<option *ngFor="let book of bookingStatus" value= {{book.id}}>{{book.serviceName}}</option>
+               </select>
+               </div>
+               
+               </a> /booking/appliance-repair -->
+            <li class="nav-item">
+               <a  class="nav-link" >
+                  <span class="fa fa-bell"  [routerLink]="['/account/BookHistory']"   ></span> 
+                  <div class="notifications" >{{bookingStatusLength}}</div>
+               </a>
+            </li>
+            <!------>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0)" [routerLink]="['/account/userdetails']">Hi,
+               {{ (user.name) ? user.name : ""}}</a>
+            </li>
+            <li class="nav-item"><a class="nav-link"
+               href="javascript:void(0)" [routerLink]="['/home']" (click)="logout()">Logout</a>
+            </li>
+            <li class="nav-item" >
+               <!--  <p>{{onloadVal}}</p>--> <!--   <div *ngFor="let country of countries">{{country.name}}</div> -->
+               <a class="nav-link">
+                  <select class=" nav-link outline btn btn-link btn-lg  gold-outline-button"
+                     (input)="onInput($event)" style="display: block;height: 26px;">
+                     <!--  <div class="form-group">
+                        <label for="locality" style="color: #df0303;margin-left: 15px;">Select City:</label>
+                        <input auto-complete class="form-control"  style="color: #df0303;"  [source]="countries"  value={{localcity}}
+                        				  value-property-name="id" display-property-name="name" [list-formatter]="autocompleListFormatter" (valueChanged)="localitySelectHandler($event)" />
+                        			</div>-->	  
+                     <option  class="nav-item"  value="">{{seletectedCity}}</option>
+                     <option   class="nav-item"  *ngFor="let country of countries"  value={{country.id}}>{{country.name}}</option>
+                  </select>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</nav>
+<!-- - -->
+
+
+
+
+<div class="hiddendivfade in"
+   [ngClass]="{'modal-backdrop': calculatorModal}"></div>
+   
+<div class="modal fade modal-ext "
+   [ngClass]="{'modal-open': calculatorModal}" id="modal-login"
+   tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content"
+         [ngClass]="{'hiddendiv': showRegisterModal}">
+         <div class="modal-header"  style="background-color:#99996E">
+            <button  style="color:#fff;opacity:3.2;" type="button" class="close" data-dismiss="modal"
+               aria-label="Close" (click)="calculatorModaldiss()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h3  style="margin-right: 0%; color:#fff">Calculator</h3>
+         </div>
+         <div class="modal-body" style="height: 340px;">
+		 <label for="">Input one:</label>
+            <div class="input-group" >
+            
+			<span class="input-group-addon"><i  aria-hidden="true"></i></span>
+			
+			<input style="margin-bottom: 0rem;margin-top: 0px;height: 19px;" type="number" placeholder="number1" class="form-control" [(ngModel)]="calculatorsval.input1">
+			<!-- <input style="margin-bottom: 0rem;margin-top: 0px;height: 41px; width: 348px;" placeholder="email id" class="form-control" phnoe="phnoe"  #phone="ngModel"   id="phone1"  [value]="loginForm.credential" (keypress)="eventHandler1($event)" [(ngModel)]="loginForm.credential" name="credential"> -->  
+			</div>
+               <label for="">Input two:</label> 
+			   <div class="input-group">
+			   <span class="input-group-addon">
+			   <i aria-hidden="true"></i>
+			   </span>
+			   <input style="margin-bottom: 0rem;margin-top: 0px;height: 19px;" type="number" class="form-control" id="" placeholder="number2" [(ngModel)]="calculatorsval.input2">
+			   
+            </div>
+            <div>
+             <label for="">Result:</label> 
+			   <div class="input-group">
+			   <span class="input-group-addon">
+			   <i aria-hidden="true"></i>
+			   </span>
+			   <input style="margin-bottom: 0rem;margin-top: 0px;height: 19px;" type="number" class="form-control" id="" placeholder="result" [(ngModel)]="resultOfcal"  disabled>
+			   </div>
+           
+           <div class="row">
+                <div class="col-xs-3">
+                        <button class="btn btn-default"  (click)="div()">/</button>
+                      
+                </div>
+                 <div class="col-xs-3">
+                       
+                      <button class="btn btn-default"  (click)="sub()">-</button>
+                     
+                </div>
+                 <div class="col-xs-3">
+                      
+                     <button class="btn btn-default" (click)="add()">+</button>
+                      
+                </div>
+                 <div class="col-xs-3">
+                       
+                      <button class="btn btn-default" (click)="mul()">x</button>
+                    
+                </div>
+                 
+            </div>
+          
+            <div  style="margin-top: 13px;">
+                      
+                    <button class="btn btn-primary btn-lg"  (click)="saveEventValue(calculatorsval)">=</button>
+                </div>
+                
+           <!--  <div class="socialLoginDiv">
+               <div class="separator"></div>
+            </div> -->
+            
+         </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      
+
+<div class="hiddendivfade in"
+   [ngClass]="{'modal-backdrop': calculatorModals}"></div>
+<div class="modal fade modal-ext "
+   [ngClass]="{'modal-open': calculatorModals}" id="modal-login" tabindex="-1"
+   role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content1">
+         
+            <button aria-label="Close" class="close" data-dismiss="modal"
+               type="button" style="
+    margin-right: 2%;
+">
+            <span aria-hidden="true" (click)="calculatorModaldiss()">x</span>
+            </button>
+            <h3 style="margin-left: 41%;color: #fff;">Calculator</h3>      
+         	<table align="center" style="background-color: #FFFFFF;width: 674px;border-radius: 0px;">
+            
+            <tbody >
+        
+                <tr>
+                    <td colspan="8"><div class="display"><input type="text" readonly value="" size="18" [(ngModel)]="calculator.values"></div></td>
+                </tr>
+                <tr>
+                	<td><input type="button" class="button charm" value="+" (click)='saveEventValue($event)'></td>
+                	<td><input type="button" class="button charm" value="/" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button charm" value="*" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button charm" value="-" (click)='saveEventValue($event)'></td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td><input type="button" class="button blueviolet" value="7" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="8" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="9" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="0" (click)='saveEventValue($event)'></td>
+                    
+                    
+                </tr>
+                <tr>
+                    
+                    <td><input type="button" class="button blueviolet" value="4" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="5" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="6" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button cyclamen" value="AC" (click)='flushEventValue($event)'></td>
+                    
+                </tr>
+                <tr>
+                    
+                    <td><input type="button" class="button blueviolet" value="1" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="2" (click)='saveEventValue($event)'></td>
+                    <td><input type="button" class="button blueviolet" value="3" (click)='saveEventValue($event)'></td>
+                    <td rowspan="2"> <input type="submit" class="btnDoble green" value="=" (click)='calculators()'> </td>
+                </tr>
+                
+               
+            </tbody>
+            
+        </table>
+         
+      </div>
+   </div>
+</div>
+
+
+
+<!--  -->
+
+<div class="hiddendivfade in"
+   [ngClass]="{'modal-backdrop': showLoginModal}"></div>
+<div class="modal fade modal-ext "
+   [ngClass]="{'modal-open': showLoginModal}" id="modal-login"
+   tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content"
+         [ngClass]="{'hiddendiv': showRegisterModal}">
+         <div class="modal-header"  style="background-color:#99996E">
+            <button  style="color:#fff;opacity:3.2;" type="button" class="close" data-dismiss="modal"
+               aria-label="Close" (click)="loginModaldiss()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h3  style="margin-right: 0%; color:#fff">Login to Demo</h3>
+         </div>
+         <div class="modal-body">
+		 <label for="">Email Id</label>
+            <div class="input-group" >
+            
+			<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+			
+			<input style="margin-bottom: 0rem;margin-top: 0px;height: 41px; width: 348px;" type="text" placeholder="email id" class="form-control" [(ngModel)]="loginForm.email">
+			<!-- <input style="margin-bottom: 0rem;margin-top: 0px;height: 41px; width: 348px;" placeholder="email id" class="form-control" phnoe="phnoe"  #phone="ngModel"   id="phone1"  [value]="loginForm.credential" (keypress)="eventHandler1($event)" [(ngModel)]="loginForm.credential" name="credential"> -->  
+			</div>
+               <label for="">Password</label> 
+			   <div class="input-group">
+			   <span class="input-group-addon">
+			   <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+			   </span>
+			   <input style="margin-bottom: 0rem;margin-top: 0px;height: 19px;" type="password" class="form-control" id="" placeholder="Password" [(ngModel)]="loginForm.password">
+            </div>
+            <h6 class="errormessage1">{{pleaseRegis}}</h6>
+            <div class="text-xs-center">
+               <button class="btn btn-primary btn-lg" (click)="login()">Login</button>
+            </div>
+          <!--    <div class="socialLoginDiv">
+               <div class="separator">OR</div>
+            </div>-->
+           <!--  <div class="container">
+               <div class="pull-left">
+                  <button type="button" class="btn btn-fb"
+                     (click)="checkFacebookState()" style="text-transform: none;width: 151pxpx;">
+                  <i class="fa fa-facebook left"></i>Sign in
+                  </button>
+               </div>
+               <div class="pull-right">
+                  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"  id="googleBtn"></div>
+               </div>
+            </div>-->
+            <div class="socialLoginDiv">
+               <div class="separator">Not Registered ?</div>
+            </div>
+            <button type="button" class="btn btn-fb register"
+               (click)="registerModal()">
+            <i class=""></i>Register
+            </button>
+            <br>
+            <div class="row">
+               <div class="col-lg-8 col-centered">
+                  <h6  class="errormessage1" >{{loginCredintial}}</h6>
+               </div>
+            </div>
+           <!--  <div class="socialLoginDiv">
+               <div class="separator"></div>
+            </div> -->
+            <div class="socialLoginDiv">
+               <!-- class="socialLoginDiv"  class="MQu4Zcf-nsxqTeiaojHZV"  resetpass-->
+               <div href="" class="pull-left"  style="color: #b2aeae;" >
+                  <a   data-reactid=".12nh88wa2lo.1.0.2.0.2.1:$0.0.0.1" style="cursor: pointer;" (click)="changePassword()">FORGOT PASSWORD ?</a>
+               </div>
+               <!-- class="socialLoginDiv" -->
+              <!-- <div href="" class="pull-right"   style="color: #b2aeae;" >
+                  <span   data-reactid=".12nh88wa2lo.1.0.2.0.2.1:$0.0.0.1" style="cursor: pointer;" (click)="resetPassword()">RESET PASSWORD</span>
+               </div> --> 
+            </div>
+            <br>
+         </div>
+      </div>
+      <div class="hiddendiv modal-content"
+         [ngClass]="{'showdiv': showRegisterModal}">
+         <div class="modal-header" style="background-color:#99996E;color:#fff;margin-top:-1px;">
+            <button style="color:#fff;opacity:3.2;" type="button" class="close" data-dismiss="modal"
+               aria-label="Close" (click)="loginModal()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h3>Register to Demo</h3>
+         </div>
+         <div class="modal-body">
+            <div class="form-group">			
+               <label for="">Name</label>
+			   <div class="input-group">
+			   <span class="input-group-addon">
+			   <i class="fa fa-user" aria-hidden="true"></i></span>
+               <input type="text" class="form-control" style="margin-bottom: 0rem;margin-top:0px;"
+               id="name" required minlength="4" maxlength="24" placeholder="Name"
+               name="name" [(ngModel)]="registerForm.name" #name="ngModel">
+			   </div>
+               <p class="errormessage1" id="userWrong">{{nameRequried}}</p>
+               <p class="errormessage1" >{{nameRequriedExists}}</p>
+               <!-- my own -->
+               
+               <!-- my own -->
+            </div>
+            <div class="form-group">
+               <label aria-hidden="true">Mobile Number</label>
+				<div class="input-group">
+				<span class="input-group-addon">
+				<i class="fa fa-phone-square" aria-hidden="true"></i></span>
+			   <input  class="form-control" id="phone2" placeholder="Mobile Number"  (keypress)="eventHandler2($event)" [value]="registerForm.phone"  phnoe="phnoe" [(ngModel)]="registerForm.phone" #phone="ngModel" style="width:100%;margin-bottom: 0rem;margin-top:0px;">
+               </div>
+			   <p class="errormessage1">{{phoneRequried}}</p>
+               <p class="errormessage1"> {{phoneRequriedExits}}</p>
+               <!-- my phone number -->
+               <!-- my own 
+                  <input type="number" [(ngModel)]="model.field" name="field" #field="ngModel" [min]="10"/>
+                  <p *ngIf="field.errors?.min">error message</p>
+                  
+                  -->
+               
+               <!-- my own -->
+               <!--  -->
+            </div>
+            <div class="form-group">
+               <label for="">Email address</label>
+			   <div class="input-group">
+				<span class="input-group-addon">
+				<i class="fa fa-envelope" aria-hidden="true"></i></span>
+			   <input style="margin-bottom: 0rem;margin-top:0px;" type="text" class="form-control" id="" placeholder="Email address" [(ngModel)]="registerForm.email" #email="ngModel" required pattern="^([A-Za-z0-9_\-\.])+\@([A-Za-z])+\.([A-Za-z]{2,4})$">
+               </div>
+               <p class="errormessage1">{{emailRequried}}</p>
+			   <p class="errormessage1">{{emailRequriedExists}}</p>
+            </div>
+            
+            <div class="form-group">
+               <label for="">Password</label>
+			   <div class="input-group">
+				<span class="input-group-addon">
+				<i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+			   <input style="margin-bottom: 0rem;margin-top:0px;" type="password" class="form-control" id="" placeholder="Password" [(ngModel)]="registerForm.password">
+			   </div>
+               <p class="errormessage1">{{passwordRequried}}</p>
+            </div>
+            <div class="text-xs-center">
+               <button class="btn btn-primary btn-lg" (click)="register()">Register</button>
+            </div>
+            <div class="socialLoginDiv">
+               <div class="separator">Already Registered ?</div>
+            </div>
+            <button type="button" class="btn btn-fb" (click)="registerModal()">
+            <i class=""></i>Login
+            </button>
+         </div>
+      </div>
+   </div>
+</div>
